@@ -4,65 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students List</title>
+    <link rel="stylesheet" href="css/studentsList.css">
 </head>
 <body>
-    <nav>
+    <nav class="main-nav">
         <header>
             Módulo Acadêmico
         </header>
-        <ul>
-            <li><a href="#">Alunos</a></li>
+        <ul class="nav-links">
+            <a class="nav-item" href="#">
+                <li>Alunos</li>
+            </a>
         </ul>
     </nav>
-    <section>
-        <header>
+    <section class="container">
+        <header class="main-header">
             Consulta de Alunos
         </header>
         <div class="content-page">
-            <form action="">
-                <input type="text" name="searchImput"> 
-                <button>Pesquisar</button>
-            </form>
-            <button>Cadastrar aluno</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Registro acadêmico</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1415</td>
-                        <td>Maria</td>
-                        <td>000.000.000-00</td>
-                        <td>
-                            <a href="#">Editar</a>
-                            <a href="#">Excluir</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1416</td>
-                        <td>João</td>
-                        <td>111.111.111-11</td>
-                        <td>
-                            <a href="#">Editar</a>
-                            <a href="#">Excluir</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1417</td>
-                        <td>Jéssica</td>
-                        <td>222.222.222-22</td>
-                        <td>
-                            <a href="#">Editar</a>
-                            <a href="#">Excluir</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="padding-left-right-20">
+                <div class="top-actions">
+                    <form class="form-search" action="">
+                        <input type="text" name="searchImput"> 
+                        <button>Pesquisar</button>
+                    </form>
+                    <button>Cadastrar aluno</button>
+                </div>
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Registro acadêmico</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1415</td>
+                            <td>Maria</td>
+                            <td>000.000.000-00</td>
+                            <td>
+                                <a href="#">Editar</a>
+                                <a href="#">Excluir</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1416</td>
+                            <td>João</td>
+                            <td>111.111.111-11</td>
+                            <td>
+                                <a href="#">Editar</a>
+                                <a href="#">Excluir</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1417</td>
+                            <td>Jéssica</td>
+                            <td>222.222.222-22</td>
+                            <td>
+                                <a href="#">Editar</a>
+                                <a href="#">Excluir</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
     
