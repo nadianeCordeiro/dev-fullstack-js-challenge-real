@@ -1,19 +1,19 @@
 /**exportando valores no node */
 
 module.exports = [{
-    nome: "Maria",
+    name: "Maria",
     email:"maria@gmail.com",
     cpf:"000.000.000-00",
     ra:"1415",
 },
 {
-    nome: "Jássica",
+    name: "Jássica",
     email:"jessica@gmail.com",
     cpf:"111.111.111-11",
     ra:"1416",
 },
 {
-    nome: "João",
+    name: "João",
     email:"joao@gmail.com",
     cpf:"222.222.222-22",
     ra:"1417",
