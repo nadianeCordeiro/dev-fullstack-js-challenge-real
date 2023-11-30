@@ -12,14 +12,20 @@ app.get('/', function (req, res) { /**criando rota(endereço) via get, ou seja, 
 })
 
 app.get('/students/list', function (req, res) { /**rota, req é a requisição (as informaçõe para levar) e o res é a resposta de retorno  */
-  res.send(database) /**resultado devolvido  */
-})
+setTimeout(function(){
+
+  res.send(database); /**resultado devolvido  */
+},2000);  
+});
 
 app.get('/students/find/:ra',function(req, res){
   const studentFound= database.find(function(student){
     return student.ra == req.params.ra;
   }) ;
-  res.send(studentFound);
+  setTimeout(function(){
+    res.send(studentFound);
+  },2000);
+  
 });
 
 app.listen(3000) /**acesso pela porta 3000 */

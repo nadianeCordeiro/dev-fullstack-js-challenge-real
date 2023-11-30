@@ -3,19 +3,19 @@
 module.exports = [{
     name: "Maria",
     email:"maria@gmail.com",
-    cpf:"000.000.000-00",
+    cpf:"00000000000",
     ra:"1415",
 },
 {
     name: "Jássica",
     email:"jessica@gmail.com",
-    cpf:"111.111.111-11",
+    cpf:"11111111111",
     ra:"1416",
 },
 {
     name: "João",
     email:"joao@gmail.com",
-    cpf:"222.222.222-22",
+    cpf:"22222222222",
     ra:"1417",
 }
 ]

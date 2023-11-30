@@ -9,9 +9,9 @@ function fetchStudentList(){
         return response.json(); /**transformando a resposta do servidor em um json */
     })
     .then(function(data){ /**uma vez que houve o retorno do servidor e converteu para json ele vai excutar esse processo abaixo */
-     console.log(data);
-
+    
      const table = $("#studentList tbody"); /**criando uma const para  a tabela que foi criado no arquivo studentsList.html */
+    
      data.map(function(student) { /**percorrendo os dados retornados e montando a tabela  */
         table.append(`
                 <tr>
@@ -19,14 +19,17 @@ function fetchStudentList(){
                     <td>${student.name}</td>
                     <td>${student.cpf}</td>
                     <td>
-                        <a href="#">Editar</a>
+                        <a href="studentManager.html?ra=${student.ra}">Editar</a>
                         <a href="#">Excluir</a>
                     </td>
                 </tr>
         
         `);
         
-     })
+     });
+     $(".loader").hide("fast");
+     $(".content-page").show("slow");
+ 
     });
 }
 
