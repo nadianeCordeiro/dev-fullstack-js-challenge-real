@@ -6,7 +6,8 @@ let database = require("./database");/*para reconhecer precisa colocar ./ nesse 
 
 const app = express() /**executando o express  atribuindo na conts app*/
 
-app.use(cors())
+app.use(cors());
+app.use(express.json()); // por padrão o express não recebe json, mas colocando dessa forma ele vai converter todos os que forem passados
 
 app.get('/', function (req, res) { /**criando rota(endereço) via get, ou seja, habilitando o acesso ao home (home é o / puro)  */
   res.send('Hello World')
@@ -39,6 +40,15 @@ app.delete("/students/delete/:ra", (req, res) =>{
 });
 });
 
+app.post("/students/save/", (req, res) =>{
+  database.push({
+    name: req.body.name,
+    ra: req.body.ra,
+    cpf: req.body.cpf,
+    email: req.body.email
+  });
+  res.send({result: true, message: 'Estudante cadastrado com sucesso!'})
+});
 
 app.listen(3000) /**acesso pela porta 3000 */
 console.log('Server is running...')
