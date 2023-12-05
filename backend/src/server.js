@@ -50,5 +50,23 @@ app.post("/students/save/", (req, res) =>{
   res.send({result: true, message: 'Estudante cadastrado com sucesso!'})
 });
 
+app.put("/students/edit/:ra", (req, res) => {
+  
+  database = database.filter((student) => {
+   return student.ra != req.params.ra;
+  });
+  database.push({
+    name: req.body.name,
+    ra: req.body.ra,
+    cpf: req.body.cpf,
+    email: req.body.email
+  });
+
+  res.send({
+    result: true,
+    message: "O student foi atualizado com sucesso!"
+  });
+});
+
 app.listen(3000) /**acesso pela porta 3000 */
 console.log('Server is running...')
