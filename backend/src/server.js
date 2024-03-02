@@ -13,11 +13,20 @@ app.get('/', function (req, res) { /**criando rota(endereço) via get, ou seja, 
   res.send('Hello World')
 })
 
-app.get('/students/list', function (req, res) { /**rota, req é a requisição (as informaçõe para levar) e o res é a resposta de retorno  */
-setTimeout(function(){
+app.get('/students/list/:searchQuery?', function (req, res) { /**rota, req é a requisição (as informaçõe para levar) e o res é a resposta de retorno  */
 
-  res.send(database); /**resultado devolvido  */
-},2000);  
+let result = database;
+let search = req.params.searchQuery;
+
+if(search){
+   search = search.toLowerCase();
+   result = result.filter((student) =>{
+    return student.ra == search || student.name.toLowerCase().indexOf(search) != -1 || student.cpf == search;
+  });
+}
+  setTimeout(function(){
+    res.send(database); /**resultado devolvido  */
+  },2000);  
 });
 
 app.get('/students/find/:ra',function(req, res){
@@ -40,7 +49,7 @@ app.delete("/students/delete/:ra", (req, res) =>{
 });
 });
 
-app.post("/students/save/", (req, res) =>{
+app.post("/students/save", (req, res) =>{
   database.push({
     name: req.body.name,
     ra: req.body.ra,

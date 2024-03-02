@@ -1,3 +1,7 @@
+//const { response } = require("express");
+//import { response } from 'express';
+
+
 $(document).ready(function(){
     fetchStudentList();
 
@@ -35,9 +39,15 @@ $(document).ready(function(){
        
     });
 
-
+  $("#formSearchStudent").submit((event) =>{
+    event.preventDefault();
+    
+    fetchStudentList(event.target.searchImput.value);
+  })
 
 });
+
+
 
 const deleteStudent = (ra)=>{
     fetch(`http://localhost:3000/students/delete/${ra}`,{
@@ -53,14 +63,14 @@ const deleteStudent = (ra)=>{
 }
 
 
-function fetchStudentList(){
+function fetchStudentList(searchQuery = ""){
 
 
     $(".loader").show("fast");
-    $(".content-page").hide("slow");
+    $(".content-page").hide();
 
 
-    fetch("http://localhost:3000/students/list") /**fetch é do javascript  permite que se faça requisições para  apis  ou urls  , nesse caso estamos passando o endereço, onde possui a porta e o endpoint, isso é uma promesse para operações assincronas */
+    fetch(`http://localhost:3000/students/list/${searchQuery}`) /**fetch é do javascript  permite que se faça requisições para  apis  ou urls  , nesse caso estamos passando o endereço, onde possui a porta e o endpoint, isso é uma promesse para operações assincronas */
     .then((response) =>{
         return response.json(); /**transformando a resposta do servidor em um json */
     })

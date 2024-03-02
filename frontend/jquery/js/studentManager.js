@@ -1,6 +1,9 @@
 $(document).ready(function(){
    
-  if(isEditingMode){
+
+
+  if(isEditingMode()){
+    setReadOnlyFields();
     fetchStudent();
   }else{
     $(".loader").hide();
@@ -13,28 +16,29 @@ $(document).ready(function(){
         name: $(this).find("#name").val(),
         ra: $(this).find("#ra").val(),
         cpf: $(this).find("#cpf").val(), /**esse modleo é jquery */
-        email: event.target.email.value, /**essa forma é javascript puro */
+        email:event.target.email.value, /**essa forma é javascript puro */
         /** event é o evento do submit
           * target é o formulario em si (studentForm) que sofreu o evento
           * email é o nome do campo que contem o valor
           * value é o valor que esta no campo buscado
           */
       };
+   
 
     let methodEndpoint;
     let urlEndpoint;
-        
+
     if(isEditingMode()){
+      
       methodEndpoint ="PUT";
       urlEndpoint = `http://localhost:3000/students/edit/${getRAFromUrl()}`;
     }else{
+      
       methodEndpoint = "POST";
-      urlEndpoint = "http://localhost:3000/students/save"; 
+      urlEndpoint = `http://localhost:3000/students/save`; 
 
     }
-console.log(urlEndpoint);
-
-console.log(methodEndpoint);
+    
 
       fetch(urlEndpoint, {
           method: methodEndpoint,
@@ -56,13 +60,21 @@ console.log(methodEndpoint);
  });
 
 
-function fetchStudent(){
 
+function setReadOnlyFields(){
+  const studentForm = $("#studentForm");
+  console.log(2)
+  studentForm.find("#ra").attr("readony", true);
+  studentForm.find("#cpf").attr("readony", true);
+ }
+
+function fetchStudent(){
   fetch(`http://localhost:3000/students/find/${getRAFromUrl()}`)
-  .then(function(response){
-    return response.json();
+  .then( function(response){
+   
+        return response.json(); //then consume it again, the error happens
   })
-  .then(function(data){
+  .then(function(data) {
 
   const studentForm = $("#studentForm");
   
@@ -79,14 +91,36 @@ function fetchStudent(){
 
 function isEditingMode(){
   const urlSearch = new URLSearchParams(window.location.search);
-
-  return urlSearch.has("ra"); // has é um metodo do URLSearchParams
+    return urlSearch.has("ra");
+ 
+   // has é um metodo do URLSearchParams
                               // has esta verificando se esta retornando alguma coisa no ra, como se fosse um if
                               // logo vai ser atribuido true ou false
+
+
+                   /**outros exemplos de retorno 
+                    * 
+                    * se usa-se   const ra =  urlSearch.get("ra");
+                    * 
+                    * return ra ? true : false;  // if ternario
+                    * 
+                    * 
+                    * ou 
+                    * 
+                    * if(ra){
+                    * return true;
+                    * } else{
+                    * return false;}
+                    * 
+                    *  */           
+                              
 }
+
+
 
 function getRAFromUrl(){
 
   const urlSearch = new URLSearchParams(window.location.search);
+ // console.log(urlSearch.get("ra"));
   return urlSearch.get("ra");
 }
